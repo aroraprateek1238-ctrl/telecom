@@ -63,46 +63,54 @@ if (document.title.includes("Thank You")) {
 }
 
 // Video tracking
- // Select all video elements
-  var videos = document.querySelectorAll('video');
+var videos = document.querySelectorAll('video');
 
-  videos.forEach(function(video, index) {
-    // Use the video’s ID if available, otherwise assign a fallback like video_1, video_2...
-    var videoId = video.id || "video_" + (index + 1);
-    var milestones = [25, 50, 75];
-    var milestonesTracked = {};
+videos.forEach(function(video, index) {
+  var videoId = video.id || "video_" + (index + 1); 
+  var milestones = [25, 50, 75];
+  var milestonesTracked = {};
+  var hasPlayed = false;
 
-    // Play
-    video.addEventListener('play', function() {
+  // Track play vs resume
+  video.addEventListener('play', function() {
+    if (!hasPlayed) {
       dataLayer.push({
         event: "video_play",
         video_id: videoId
       });
-    });
-
-    // Progress milestones
-    video.addEventListener('timeupdate', function() {
-      var percentPlayed = Math.floor((video.currentTime / video.duration) * 100);
-      milestones.forEach(function(m) {
-        if (percentPlayed >= m && !milestonesTracked[m]) {
-          dataLayer.push({
-            event: "video_progress",
-            video_id: videoId,
-            progress: m
-          });
-          milestonesTracked[m] = true; // prevents firing again
-        }
-      });
-    });
-
-    // Complete
-    video.addEventListener('ended', function() {
+      hasPlayed = true;
+    } else {
       dataLayer.push({
-        event: "video_complete",
+        event: "video_resume",
         video_id: videoId
       });
+    }
+  });
+
+  // Track progress milestones
+  video.addEventListener('timeupdate', function() {
+    var percentPlayed = Math.floor((video.currentTime / video.duration) * 100);
+    milestones.forEach(function(m) {
+      if (percentPlayed >= m && !milestonesTracked[m]) {
+        dataLayer.push({
+          event: "video_progress",
+          video_id: videoId,
+          progress: m
+        });
+        milestonesTracked[m] = true;
+      }
     });
   });
+
+  // Track complete
+  video.addEventListener('ended', function() {
+    dataLayer.push({
+      event: "video_complete",
+      video_id: videoId
+    });
+  });
+});
+
 // Lead form submit
 var leadForm = document.getElementById('leadForm');
 if (leadForm) {
