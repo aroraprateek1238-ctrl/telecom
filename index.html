@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Demo Store</title>
+  <link rel="stylesheet" href="style.css">
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXX');</script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header>
+    <h1>Welcome to My Demo Store</h1>
+  </header>
+
+  <section class="banner">
+    <a href="#" id="newsletter-banner">🔥 Sign up & get 20% off your first order!</a>
+  </section>
+
+  <section class="search">
+    <input type="text" id="search-box" placeholder="Search products...">
+    <button id="search-btn">Search</button>
+  </section>
+
+  <section class="products">
+    <h2>Products</h2>
+    <div class="product" data-id="SKU_001" data-name="Basic Plan" data-price="19.99">
+      <p>Basic Plan - $19.99</p>
+      <button class="minus">-</button>
+      <span class="quantity">0</span>
+      <button class="plus">+</button>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product" data-id="SKU_002" data-name="Premium Plan" data-price="49.99">
+      <p>Premium Plan - $49.99</p>
+      <button class="minus">-</button>
+      <span class="quantity">0</span>
+      <button class="plus">+</button>
+      <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <a href="checkout.html" class="checkout-btn">Go to Checkout</a>
+  </section>
+
+  <section class="video-section">
+    <h2>Promo Video</h2>
+    <video id="promoVideo" width="400" controls>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <section class="lead-form">
+    <h2>Sign up for our Newsletter</h2>
+    <form id="leadForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

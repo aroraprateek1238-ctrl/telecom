@@ -1,0 +1,6 @@
+body { font-family: Arial, sans-serif; margin: 20px; background: #fafafa; }
+header { background: #333; color: #fff; padding: 10px; text-align: center; }
+.products, .lead-form, .video-section, .search, .banner { margin: 20px 0; padding: 15px; background: #fff; border: 1px solid #ccc; }
+button { margin: 5px; padding: 5px 10px; cursor: pointer; }
+.checkout-btn { display: block; margin-top: 15px; }
+.banner { background: #ffefc5; text-align: center; font-size: 18px; }
