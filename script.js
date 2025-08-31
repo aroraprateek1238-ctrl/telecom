@@ -70,19 +70,22 @@ videos.forEach(function(video, index) {
   var milestones = [25, 50, 75];
   var milestonesTracked = {};
   var hasPlayed = false;
+  var videoTitle = video.title || "Untitled Video";
 
   // Track play vs resume
   video.addEventListener('play', function() {
     if (!hasPlayed) {
       dataLayer.push({
         event: "video_play",
-        video_id: videoId
+        video_id: videoId,
+        video_title: videoTitle
       });
       hasPlayed = true;
     } else {
       dataLayer.push({
         event: "video_resume",
-        video_id: videoId
+        video_id: videoId,
+        video_title: videoTitle
       });
     }
   });
@@ -95,6 +98,7 @@ videos.forEach(function(video, index) {
         dataLayer.push({
           event: "video_progress",
           video_id: videoId,
+          video_title: videoTitle,
           progress: m
         });
         milestonesTracked[m] = true;
@@ -106,7 +110,8 @@ videos.forEach(function(video, index) {
   video.addEventListener('ended', function() {
     dataLayer.push({
       event: "video_complete",
-      video_id: videoId
+      video_id: videoId,
+      video_title: videoTitle
     });
   });
 });
