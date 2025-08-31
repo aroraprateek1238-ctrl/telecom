@@ -63,27 +63,46 @@ if (document.title.includes("Thank You")) {
 }
 
 // Video tracking
-var video = document.querySelector('#promoVideo');
-if (video) {
-  var milestones = [25, 50, 75];
-  var milestonesTracked = {};
-  video.addEventListener('play', function() {
-    dataLayer.push({ event: "video_play", video_id: "promoVideo" });
-  });
-  video.addEventListener('timeupdate', function() {
-    var percentPlayed = Math.floor((video.currentTime / video.duration) * 100);
-    milestones.forEach(function(m) {
-      if (percentPlayed >= m && !milestonesTracked[m]) {
-        dataLayer.push({ event: "video_progress", video_id: "promoVideo", progress: m });
-        milestonesTracked[m] = true;
-      }
+ // Select all video elements
+  var videos = document.querySelectorAll('video');
+
+  videos.forEach(function(video, index) {
+    // Use the video’s ID if available, otherwise assign a fallback like video_1, video_2...
+    var videoId = video.id || "video_" + (index + 1);
+    var milestones = [25, 50, 75];
+    var milestonesTracked = {};
+
+    // Play
+    video.addEventListener('play', function() {
+      dataLayer.push({
+        event: "video_play",
+        video_id: videoId
+      });
+    });
+
+    // Progress milestones
+    video.addEventListener('timeupdate', function() {
+      var percentPlayed = Math.floor((video.currentTime / video.duration) * 100);
+      milestones.forEach(function(m) {
+        if (percentPlayed >= m && !milestonesTracked[m]) {
+          dataLayer.push({
+            event: "video_progress",
+            video_id: videoId,
+            progress: m
+          });
+          milestonesTracked[m] = true; // prevents firing again
+        }
+      });
+    });
+
+    // Complete
+    video.addEventListener('ended', function() {
+      dataLayer.push({
+        event: "video_complete",
+        video_id: videoId
+      });
     });
   });
-  video.addEventListener('ended', function() {
-    dataLayer.push({ event: "video_complete", video_id: "promoVideo" });
-  });
-}
-
 // Lead form submit
 var leadForm = document.getElementById('leadForm');
 if (leadForm) {
