@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <title>My Demo Store</title>
   <link rel="stylesheet" href="style.css">
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  
+  // Default consent = denied
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'denied',
+    'personalization_storage': 'denied',
+    'security_storage': 'granted' // usually safe to keep "granted"
+  });
+</script>
+  
   <script>
 window.dataLayer = window.dataLayer || [];
 dataLayer.push({
@@ -83,5 +97,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
   <script src="script.js"></script>
+  
+  <!-- Consent Banner -->
+<div id="consent-banner" style="position:fixed;bottom:0;left:0;width:100%;background:#eee;padding:10px;text-align:center;z-index:9999;">
+  <p>We use cookies to improve your experience. Accept or reject to continue.</p>
+  <button id="accept-consent">Accept</button>
+  <button id="reject-consent">Reject</button>
+</div>
+
+<script>
+  document.getElementById("accept-consent").addEventListener("click", function() {
+    gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'functionality_storage': 'granted',
+      'personalization_storage': 'granted',
+      'security_storage': 'granted'
+    });
+    document.getElementById("consent-banner").style.display = "none";
+  });
+
+  document.getElementById("reject-consent").addEventListener("click", function() {
+    gtag('consent', 'update', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'denied',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted'
+    });
+    document.getElementById("consent-banner").style.display = "none";
+  });
+</script>
 </body>
 </html>
