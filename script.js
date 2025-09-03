@@ -48,8 +48,12 @@ if (document.getElementById('cart-items')) {
   }
   document.getElementById('proceed').addEventListener('click', function() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    dataLayer.push({ event: "proceed_checkout", ecommerce: { items: cart } });
+    dataLayer.push({ event: "proceed_checkout", ecommerce: { items: cart }, transport_type: "beacon" });
+    // Delay navigation just a bit
+  setTimeout(() => {
     window.location.href = "thankyou.html";
+  }, 300); // 300ms = invisible to user, enough for GA
+    // window.location.href = "thankyou.html";
   });
 }
 
