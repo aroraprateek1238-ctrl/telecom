@@ -107,24 +107,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
   document.getElementById("accept-consent").addEventListener("click", function() {
-    gtag('consent', 'update', {
+    var consentUpdate = {
       'ad_storage': 'granted',
       'analytics_storage': 'granted',
       'functionality_storage': 'granted',
       'personalization_storage': 'granted',
       'security_storage': 'granted'
-    });
+    };
+    gtag('consent', 'update', consentUpdate);
+    localStorage.setItem('user_consent', JSON.stringify(consentUpdate));
     document.getElementById("consent-banner").style.display = "none";
   });
 
   document.getElementById("reject-consent").addEventListener("click", function() {
-    gtag('consent', 'update', {
+    var consentUpdate = {
       'ad_storage': 'denied',
       'analytics_storage': 'denied',
       'functionality_storage': 'denied',
       'personalization_storage': 'denied',
       'security_storage': 'granted'
-    });
+    };
+     gtag('consent', 'update', consentUpdate);
+    localStorage.setItem('user_consent', JSON.stringify(consentUpdate));
     document.getElementById("consent-banner").style.display = "none";
   });
 </script>
