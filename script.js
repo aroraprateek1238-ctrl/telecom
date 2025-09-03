@@ -44,7 +44,7 @@ if (document.getElementById('cart-items')) {
     let totalEl = document.createElement('h3');
     totalEl.textContent = `Total: $${total.toFixed(2)}`;
     container.appendChild(totalEl);
-    dataLayer.push({ event: "begin_checkout", ecommerce: { items: cart } });
+    dataLayer.push({ event: "begin_checkout", ecommerce: { items: cart }, transport_type: "beacon" });
   }
   document.getElementById('proceed').addEventListener('click', function() {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
