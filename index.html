@@ -52,6 +52,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <button id="search-btn">Search</button>
   </section>
 
+
+  <script>
+window.dataLayer.push({
+  event: 'user_type_set',
+  user_type: 'VIP'
+});
+</script>
+
   <section class="products">
     <h2>Products</h2>
     <div class="product" data-id="SKU_001" data-name="Basic Plan" data-price="19.99">
@@ -95,6 +103,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="submit">Subscribe</button>
     </form>
   </section>
+
+  <!-- put this anywhere (email preview, test page, or your site) -->
+<a href="https://www.yoursite.com/landing-page?utm_source=newsletter&utm_medium=email&utm_campaign=sept_playbook" id="utm-test-link">
+  Click me — UTM test
+</a>
 
   <script src="script.js"></script>
   
