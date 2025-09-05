@@ -53,13 +53,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </section>
 
 
-  <script>
-window.dataLayer.push({
-  event: 'user_type_set',
-  user_type: 'VIP'
-});
-</script>
-
+ 
   <section class="products">
     <h2>Products</h2>
     <div class="product" data-id="SKU_001" data-name="Basic Plan" data-price="19.99">
@@ -144,6 +138,16 @@ window.dataLayer.push({
     localStorage.setItem('user_consent', JSON.stringify(consentUpdate));
     document.getElementById("consent-banner").style.display = "none";
   });
+
+  </script>
+
+   <script>
+window.dataLayer.push({
+  event: 'user_type_set',
+  user_type: 'VIP'
+});
 </script>
+  
+
 </body>
 </html>
