@@ -124,6 +124,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     gtag('consent', 'update', consentUpdate);
     localStorage.setItem('user_consent', JSON.stringify(consentUpdate));
     document.getElementById("consent-banner").style.display = "none";
+    window.dataLayer.push({
+    event: 'user_type_set',
+    user_type: 'VIP'
+  });
   });
 
   document.getElementById("reject-consent").addEventListener("click", function() {
@@ -141,12 +145,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   </script>
 
-   <script>
-window.dataLayer.push({
-  event: 'user_type_set',
-  user_type: 'VIP'
-});
-</script>
   
 
 </body>
