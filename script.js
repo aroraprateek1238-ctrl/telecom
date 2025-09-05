@@ -52,7 +52,7 @@ if (document.getElementById('cart-items')) {
     // Delay navigation just a bit
   setTimeout(() => {
     window.location.href = "thankyou.html";
-  }, 400); // 300ms = invisible to user, enough for GA
+  }, 300); // 300ms = invisible to user, enough for GA
     // window.location.href = "thankyou.html";
   });
 }
